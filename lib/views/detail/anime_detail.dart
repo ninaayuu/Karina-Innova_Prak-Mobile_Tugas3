@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http_request/presenter/anime_detail_presenter.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key, required this.id, required this.endpoint});
-  final int id;
+  const DetailScreen({super.key, required this.head, required this.endpoint});
+  final int head;
   final String endpoint;
 
   @override
@@ -20,7 +20,7 @@ class _DetailScreenState extends State<DetailScreen> implements AnimeDetailView 
   void initState() {
     super.initState();
     _presenter = AnimeDetailPresenter(this);
-    _presenter.loadDetailData(widget.endpoint, widget.id);
+    _presenter.loadDetailData(widget.endpoint, widget.head);
   }
 
   @override
@@ -89,25 +89,17 @@ class _DetailScreenState extends State<DetailScreen> implements AnimeDetailView 
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            "Name: ${_detailData!['name']}",
+                            "Character: ${_detailData!['character']}",
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            "Family: ${_detailData!['family']}",
+                            "Game Series: ${_detailData!['amiiboSeries']}",
                             style: TextStyle(fontSize: 16),
                           ),
                           const SizedBox(height: 8),
-                          Text(
-                            "Kekkei Genkai: ${_detailData!['personal']['kekkeiGenkai'] ?? 'Empty'}",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "Jutsu: ${_detailData!['jutsu']}",
-                            style: TextStyle(fontSize: 16),
-                          ),
+                          
                         ],
                       ),
                     )

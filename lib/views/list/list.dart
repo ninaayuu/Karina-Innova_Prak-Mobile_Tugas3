@@ -16,7 +16,7 @@ class _AnimeListScreenState extends State<AnimeListScreen>
   bool _isLoading = false;
   List<Anime> _animeList = [];
   String? _errorMessage;
-  String _currentEndpoint = 'akatsuki';
+  String _currentEndpoint = 'api/amiibo/';
 
   @override
   void initState() {
@@ -66,9 +66,10 @@ class _AnimeListScreenState extends State<AnimeListScreen>
       backgroundColor: Colors.white, // Latar belakang putih
       appBar: AppBar(
         title: Text(
-          "Anime List",
+          "NITENDO AMIIBO LIST",
           style: TextStyle(color: Colors.pink[600]), // Judul AppBar warna pink
         ),
+        
         backgroundColor: Colors.white,
         elevation: 1,
         iconTheme: IconThemeData(color: Colors.pink[600]), // Ikon AppBar warna pink
@@ -81,7 +82,7 @@ class _AnimeListScreenState extends State<AnimeListScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () => _fetchData('akatsuki'),
+                  onPressed: () => _fetchData('character'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink[100], // Warna tombol pink muda
                     shape: RoundedRectangleBorder(
@@ -89,13 +90,13 @@ class _AnimeListScreenState extends State<AnimeListScreen>
                     ),
                   ),
                   child: Text(
-                    "Akatsuki",
+                    "Character",
                     style: TextStyle(color: Colors.pink[900]), // Teks warna pink tua
                   ),
                 ),
                 SizedBox(width: 10),
                 ElevatedButton(
-                  onPressed: () => _fetchData('kara'),
+                  onPressed: () => _fetchData('head'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.pink[100], // Warna tombol pink muda
                     shape: RoundedRectangleBorder(
@@ -103,7 +104,7 @@ class _AnimeListScreenState extends State<AnimeListScreen>
                     ),
                   ),
                   child: Text(
-                    "Kara",
+                    "Head",
                     style: TextStyle(color: Colors.pink[900]), // Teks warna pink tua
                   ),
                 ),
@@ -156,14 +157,14 @@ class _AnimeListScreenState extends State<AnimeListScreen>
                                       ),
                               ),
                               title: Text(
-                                anime.name,
+                                anime.character,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.pink[800], // Warna judul pink
                                 ),
                               ),
                               subtitle: Text(
-                                'Family ${anime.familyCreator}',
+                                'Game Sseries ${anime.gameSeries}',
                                 style: TextStyle(color: Colors.pink[400]), // Warna subtitle pink lembut
                               ),
                               onTap: () {
@@ -171,7 +172,7 @@ class _AnimeListScreenState extends State<AnimeListScreen>
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => DetailScreen(
-                                      id: anime.id,
+                                      head: anime.head,
                                       endpoint: _currentEndpoint,
                                     ),
                                   ),

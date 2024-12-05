@@ -1,26 +1,26 @@
 class Anime{
-  final int id;
-  final String name;
+  final int head;
+  final String character;
   final String imageUrl;
-  final String familyCreator;
+  final String gameSeries;
 
   Anime ({
-    required this.id,
-    required this.name,
+    required this.head,
+    required this.character,
     required this.imageUrl,
-    required this.familyCreator
+    required this.gameSeries
   });
 
   factory Anime.fromJson(Map<String, dynamic> json){
     return Anime(
-      id: json['id'] ?? 0,
-      name: json ['name'] ?? "",
+      head: json['head'] ?? 0,
+      character: json ['amiiboSeries'] ?? "",
       imageUrl: (json['images'] != null && json['images'].isNotEmpty)
         ?json['images'] [0]
         : 'https://placehold.co/600x400',
-      familyCreator: (json['family'] != null)
-        ?(json['family']['creator'] ?? "Family Creator Empty")
-        : "gaada keluarga "
+      gameSeries: (json['character'] != null)
+        ?(json['gameSeries']?? "Game Series Empty")
+        : "gaada series "
       );
   }
 }
